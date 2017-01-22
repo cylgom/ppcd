@@ -14,13 +14,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "Commondefs.h"
+#include "commondefs.h"
 #include "ppcd.h"
 
 #define POWERPC_32      // Use generic 32-bit model
 //efine POWERPC_64      // Use generic 64-bit model
 //efine GEKKO           // Use Gekko (32-bit ISA)
-//efine BROADWAY        // Use Broadway (32-bit ISA)
+#define BROADWAY        // Use Broadway (32-bit ISA)
 
 #define SIMPLIFIED      // Allow simplified mnemonics
 //efine UPPERCASE       // Use upper case strings in output

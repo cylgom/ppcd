@@ -1,43 +1,40 @@
-PPCD is very accurate disassembler of PowerPC-based processors ISA. Current supported models are:
+### PPCD
+PPCD is very accurate disassembler for PowerPC processors made by org.
+So far it supports the following ISA :
+- PowerPc-32 (Generic)
+- PowerPc-64 (Generic)
+- Gekko (GameCube)
+- Broadway/PowerPC 750CL (Wii)
 
-  * Generic POWERPC-32
-  * Generic POWERPC-64
-  * Gekko
+### Configuration
+The target architecture should be defined before compilation in ppcd.cpp.
 
-For each model standalone compiled executable is provided. To disassemble binary file, use:
+### Compilation
+This tool seriously needed a makefile, so I wrote a very basic one.
+Run "make" to compile, "make clean" to remove object files and binaries.
 
-ppcd-**model** binary
+### Code style and warning
+Althought this tool was written by org, and as he said in ppcd.cpp :
+"Look away, code is messed :)". PPCD makes heavy use of deprecated
+functions, non-standard C++ features and triggers hundreds of warnings
+of all kind while compiled. Do not remove the c++03 and permissive flags 
+in the makefile, or it won't compile.
 
-Output will go to stdout.
+### Usage
+./ppcd <binary file>
+PPCD outputs on stdout.
 
-Credits: This program has written by org between 2006-2007 for Gekko debugger. PPCD is free opensource. You can use it in your applications without mention.
+### TODO
+- Clean-up
+- Add output options
+- File format auto-detection
+- Support file output
+- Allow the user to specify the target architecture as a parameter
+  rather than in ppcd.cpp
 
-Let me know, if you made support for more processors.
-
-How to use sourcecode:
-
-You need to add ppcd.cpp/ppcd.h and Commondefs (data types) to your project. Call PPCDisasm and pass it PPCD\_CB structure with filled "pc" and "instr" parameters. At minimum you can use "mnemonic" and "operands" as output parameters, but if you need more detailed information about disassembled instruction, use "icalss", "immed", "target" and "r":
-
-  * iclass: Combination of flags which specify instruction "class" or category. See ppcd.h for list of flags. Note, many flags can be combined, for example FPU + LDST.
-  * immed: Immediate value for integer instructions or address displacement for load/store.
-  * target: "Cooked" absolute branch address (calculated from input "pc" parameter) OR mask for rlwinm-like instructions.
-  * r: Index list for register operands in appropriate order.
-
-As option there is PPCDisasmSimple call for quick use. Just call PPCDisasmSimple(pc, instr) and it will return formatted string.
-
-ppcd.cpp compilation tips:
-
-  * If you need uppercase: define UPPERCASE
-  * If you need another hexademical numbers representation: See HEX1 and HEX2
-  * If you dont need spaces between commas: redefine COMMA as ","
-  * If you dont need simplified mnemonics (highly not recommended :)): undefine SIMPLIFIED
-
-CHANGELOG:
-
-  * 0.01    Initial release. Generic 32/64-bit ISA is implemented and extensively tested.
-  * 0.02    Added support for Gekko.
-  * 0.03    Fixed some typos.
-
-**This project is completed.**
-
-**If you're experience weird .cpp errors, use static type casting in problem places. Things may change in time in CPP world.**
+### Changelog
+- 0.01 Initial release. Generic 32/64-bit ISA is implemented and extensively tested.
+- 0.02 Added support for Gekko.
+- 0.03 Fixed some typos.
+- **forked ogamespec's repo**
+- 0.04 Made the code valid outside of an IDE.

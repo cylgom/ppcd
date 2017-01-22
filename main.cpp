@@ -2,20 +2,20 @@
 
 #include <stdio.h>
 
-#include "Commondefs.h"
+#include "commondefs.h"
 #include "ppcd.h"
 
-#define MODULE_NAME "ppcd-generic32"
-#define MODULE_VER  0.03
+#define MODULE_NAME "ppcd"
+#define MODULE_VER  0.04
 
 static void usage(void)
 {
     printf ("PPCD PowerPC Disassembler. Version %.2f\n", MODULE_VER);
-    printf ("(c) 2007, org.\n\n");
+    printf ("All rights reserved to org\n\n");
     printf ("Use: %s <binary file>\n", MODULE_NAME);
 }
 
-static u32 FASTCALL Swap32(u32 data)
+static u32 Swap32(u32 data)
 {
     return ((data >> 24)             ) |
            ((data >>  8) & 0x0000ff00) |
